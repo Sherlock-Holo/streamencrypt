@@ -8,7 +8,6 @@ func md5sum(d []byte) []byte {
 	return h.Sum(nil)
 }
 
-// chacha20-ietf key length should be 32 bytes (256 bits)
 func evpBytesToKey(password string, keyLen int) (key []byte) {
 	const md5Len = 16
 

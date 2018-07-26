@@ -4,7 +4,9 @@ import "io"
 
 type Cipher interface {
 	IV() []byte
+
 	InitReader(r io.Reader)
+
 	InitWriter(w io.Writer)
 
 	io.ReadWriter

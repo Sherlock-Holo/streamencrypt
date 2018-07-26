@@ -8,7 +8,7 @@ import (
 	"github.com/Yawning/chacha20"
 )
 
-type Chacha20Ietf struct {
+type ChaCha20Ietf struct {
 	key    []byte
 	iv     []byte
 	cipher *chacha20.Cipher
@@ -16,24 +16,24 @@ type Chacha20Ietf struct {
 	writer cipher.StreamWriter
 }
 
-func (c *Chacha20Ietf) IV() []byte {
+func (c *ChaCha20Ietf) IV() []byte {
 	return c.iv
 }
 
-func (c *Chacha20Ietf) Read(b []byte) (n int, err error) {
+func (c *ChaCha20Ietf) Read(b []byte) (n int, err error) {
 	return c.reader.Read(b)
 }
 
-func (c *Chacha20Ietf) Write(b []byte) (n int, err error) {
+func (c *ChaCha20Ietf) Write(b []byte) (n int, err error) {
 	return c.writer.Write(b)
 }
 
-func (c *Chacha20Ietf) InitReader(r io.Reader) {
+func (c *ChaCha20Ietf) InitReader(r io.Reader) {
 	c.reader.R = r
 	c.reader.S = c.cipher
 }
 
-func (c *Chacha20Ietf) InitWriter(w io.Writer) {
+func (c *ChaCha20Ietf) InitWriter(w io.Writer) {
 	c.writer.W = w
 	c.writer.S = c.cipher
 }
@@ -49,7 +49,7 @@ func NewChacha20Ietf(key, iv []byte) (Cipher, error) {
 		return nil, err
 	}
 
-	return &Chacha20Ietf{
+	return &ChaCha20Ietf{
 		key:    key,
 		iv:     iv,
 		cipher: ciph,
