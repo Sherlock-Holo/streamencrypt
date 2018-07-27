@@ -2,6 +2,12 @@ package streamencrypt
 
 import "io"
 
+type Type int
+
+const (
+	CHACHA20_IETF Type = iota
+)
+
 type Cipher interface {
 	IV() []byte
 
@@ -18,6 +24,6 @@ type CipherInfo struct {
 	NewCipher func(key, iv []byte) (Cipher, error)
 }
 
-var Ciphers = map[string]CipherInfo{
-	"ChaCha20-ietf": {32, 12, NewChacha20Ietf},
+var Ciphers = map[Type]CipherInfo{
+	CHACHA20_IETF: {32, 12, NewChacha20Ietf},
 }

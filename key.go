@@ -8,7 +8,7 @@ func md5sum(d []byte) []byte {
 	return h.Sum(nil)
 }
 
-func evpBytesToKey(password string, keyLen int) (key []byte) {
+func EvpBytesToKey(password string, keyLen int) (key []byte) {
 	const md5Len = 16
 
 	cnt := (keyLen-1)/md5Len + 1
